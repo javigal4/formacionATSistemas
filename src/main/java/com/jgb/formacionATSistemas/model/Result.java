@@ -23,7 +23,7 @@ public class Result {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer idResult;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
