@@ -1,35 +1,31 @@
 package com.jgb.formacionATSistemas.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @Entity
-public class User {
+public class Difficulty {
 
+	public static final String FIELD_QUESTION = "question";
+	
 	@Id
 	@GeneratedValue
-	private Integer idUser;
-
+	private Integer idDifficulty;
+	
 	@Column(nullable = false)
 	private String name;
-
-	@Column(unique = true, nullable = false)
-	private String email;
-
-	private String password;
-
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = Course.FIELD_USER)
-	private List<Course> courses;
-
+	
+	@JoinColumn(name = FIELD_QUESTION)
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Question question;
 }

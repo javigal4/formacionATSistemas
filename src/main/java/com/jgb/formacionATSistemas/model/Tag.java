@@ -8,28 +8,26 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @Entity
-public class User {
+public class Tag {
 
 	@Id
 	@GeneratedValue
-	private Integer idUser;
-
+	private Integer idTag;
+	
 	@Column(nullable = false)
 	private String name;
-
-	@Column(unique = true, nullable = false)
-	private String email;
-
-	private String password;
-
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = Course.FIELD_USER)
-	private List<Course> courses;
-
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = Questionary.FIELD_TAG)
+	private List<Questionary> questionary;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Question.FIELD_TAG)
+	private List<Question> question;
 }
