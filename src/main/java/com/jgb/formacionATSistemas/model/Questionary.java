@@ -37,5 +37,7 @@ public class Questionary {
 	@ManyToMany(fetch = FetchType.LAZY)
 	private List<Tag> tag;
 	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = Question.FIELD_QUESTIONARY)
+	List<Question> question;
 	
 }

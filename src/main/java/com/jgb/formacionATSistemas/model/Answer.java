@@ -15,7 +15,7 @@ import lombok.Setter;
 @Entity
 public class Answer {
 	
-	public static final String FIELD_ANSWER = "answer";
+	public static final String FIELD_QUESTION = "question";
 	
 	@Id
 	@GeneratedValue
@@ -23,7 +23,7 @@ public class Answer {
 	
 	private String name;
 	
-	//@JoinColumn(name = FIELD_ANSWER)
-	//@ManyToOne(fetch = FetchType.LAZY)
-	//private Question question;
+	@JoinColumn(name = FIELD_QUESTION)
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Question question;
 }
