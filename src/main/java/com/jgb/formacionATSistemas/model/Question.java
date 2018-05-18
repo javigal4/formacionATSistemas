@@ -2,6 +2,7 @@ package com.jgb.formacionATSistemas.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,26 +20,27 @@ import lombok.Setter;
 @Entity
 public class Question {
 
-	public static final String FIELD_TAG = "tag";
-	public static final String FIELD_QUESTIONARY = "questionary";
+	public static final String FIELD_QUIZ = "questionary";
+	public static final String FIELD_DIFFICULTY = "difficulty";
 	
 	@Id
 	@GeneratedValue
 	private Integer idQuestion;
 	
-	private String name;
+	@Column(nullable = false)
+	private String question;
 	
-	@JoinColumn(name = FIELD_TAG)
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	private Tag tag;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = Difficulty.FIELD_QUESTION)
-	private List<Difficulty> difficulty;
+	@JoinColumn(name = FIELD_DIFFICULTY)
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Difficulty difficulty;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Answer.FIELD_QUESTION)
 	private List<Answer> answer;
 	
-	@JoinColumn(name = FIELD_QUESTIONARY)
+	@JoinColumn(name = FIELD_QUIZ)
 	@ManyToMany(fetch = FetchType.LAZY)
-	private List<Questionary> questionary;
+	private List<Quiz> quiz;
 }

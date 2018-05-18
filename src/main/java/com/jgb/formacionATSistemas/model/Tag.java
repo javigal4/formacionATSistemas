@@ -8,8 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,9 +23,6 @@ public class Tag {
 	@Column(nullable = false)
 	private String name;
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = Questionary.FIELD_TAG)
-	private List<Questionary> questionary;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = Question.FIELD_TAG)
-	private List<Question> question;
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = Quiz.FIELD_TAG)
+	private List<Quiz> quiz;
 }

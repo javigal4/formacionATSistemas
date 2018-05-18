@@ -26,15 +26,8 @@ public class Course {
 	private Integer idCourse;
 	
 	@Column(nullable = false)
-	private String name;
+	private String course;
 	
-	@JoinColumn(name = FIELD_USER)
-	@ManyToMany(fetch = FetchType.LAZY)
-	private List<User> user;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = Questionary.FIELD_COURSE)
-	private List<Questionary> questionary;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = Result.FIELD_COURSE)
-	private List<Result> result;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Quiz.FIELD_COURSE)
+	private List<Quiz> quiz;
 }
