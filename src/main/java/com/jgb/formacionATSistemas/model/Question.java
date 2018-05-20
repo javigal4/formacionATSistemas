@@ -20,7 +20,7 @@ import lombok.Setter;
 @Entity
 public class Question {
 
-	public static final String FIELD_QUIZ = "questionary";
+	public static final String FIELD_QUIZ = "quiz";
 	public static final String FIELD_DIFFICULTY = "difficulty";
 	
 	@Id
@@ -29,9 +29,6 @@ public class Question {
 	
 	@Column(nullable = false)
 	private String question;
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	private Tag tag;
 	
 	@JoinColumn(name = FIELD_DIFFICULTY)
 	@ManyToOne(fetch = FetchType.LAZY)
