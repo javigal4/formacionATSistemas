@@ -21,7 +21,7 @@ public class Tag {
 	private Integer idTag;
 	
 	@Column(nullable = false)
-	private String name;
+	private String tag;
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = Quiz.FIELD_TAG)
 	private List<Quiz> quiz;

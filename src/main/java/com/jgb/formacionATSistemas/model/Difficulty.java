@@ -24,7 +24,7 @@ public class Difficulty {
 	private Integer idDifficulty;
 	
 	@Column(nullable = false)
-	private String name;
+	private String difficulty;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Question.FIELD_DIFFICULTY)
 	private List<Question> question;
