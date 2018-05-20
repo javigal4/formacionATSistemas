@@ -14,17 +14,16 @@ public class CourseServiceImp implements CourseService, InitializingBean {
 	CourseDAO dao;
 	
 	@Override
-	public void test() {
+	public void testCourse() {
 		final Course course = new Course();
 		course.setCourse("Curso de ATSISTEMAS");
 		dao.save(course);
-		final Optional<Course> c = dao.findOneByNameOrderByIdCourseDesc("Curso de Ingenieria Web");
+		final Optional<Course> c = dao.findOneByCourseOrderByIdCourseDesc("Curso de Ingenieria Web");
 		System.out.println(c.isPresent() ? c.get() : "no encontrado");
 	}
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		test();
-		
+		testCourse();
 	}
 }
