@@ -3,6 +3,7 @@ package com.jgb.formacionATSistemas.service;
 import org.springframework.beans.factory.InitializingBean;
 
 import com.jgb.formacionATSistemas.dao.ResultDAO;
+import com.jgb.formacionATSistemas.model.User;
 
 public class ResultServiceImp implements ResultService, InitializingBean{
 
@@ -13,5 +14,4 @@ public class ResultServiceImp implements ResultService, InitializingBean{
 		// TODO Auto-generated method stub
 		
 	}
-
 }
