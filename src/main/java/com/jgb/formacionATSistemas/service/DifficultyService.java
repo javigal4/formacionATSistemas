@@ -1,5 +1,7 @@
 package com.jgb.formacionATSistemas.service;
 
-public interface DifficultyService {
+import com.jgb.formacionATSistemas.model.Difficulty;
+
+public interface DifficultyService extends AbstractService<Difficulty, Integer>{
 
 }

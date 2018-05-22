@@ -1,6 +1,9 @@
 package com.jgb.formacionATSistemas.service;
 
-import org.springframework.beans.factory.InitializingBean;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -8,9 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.jgb.formacionATSistemas.dao.UserDAO;
 import com.jgb.formacionATSistemas.model.User;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImp implements UserService{

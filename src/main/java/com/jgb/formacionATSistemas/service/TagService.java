@@ -1,6 +1,7 @@
 package com.jgb.formacionATSistemas.service;
 
-public interface TagService {
+import com.jgb.formacionATSistemas.model.Tag;
+
+public interface TagService extends AbstractService<Tag, Integer>{
 	
-	void test();
 }

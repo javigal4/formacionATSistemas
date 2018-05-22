@@ -1,5 +1,9 @@
 package com.jgb.formacionATSistemas.service;
 
-public interface QuizService {
-	void test();
+import java.io.Serializable;
+
+import com.jgb.formacionATSistemas.model.Quiz;
+
+public interface QuizService extends AbstractService<Quiz, Integer> {
+	
 }

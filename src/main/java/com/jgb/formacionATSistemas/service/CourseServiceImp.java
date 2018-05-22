@@ -1,29 +1,47 @@
 package com.jgb.formacionATSistemas.service;
 
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import com.jgb.formacionATSistemas.dao.CourseDAO;
 import com.jgb.formacionATSistemas.model.Course;
 
-public class CourseServiceImp implements CourseService, InitializingBean {
+public class CourseServiceImp implements CourseService {
 
 	@Autowired
-	CourseDAO dao;
-	
+	CourseDAO courseDao;
+
 	@Override
-	public void testCourse() {
-		final Course course = new Course();
-		course.setCourse("Curso de ATSISTEMAS");
-		dao.save(course);
-		final Optional<Course> c = dao.findOneByCourseOrderByIdCourseDesc("Curso de Ingenieria Web");
-		System.out.println(c.isPresent() ? c.get() : "no encontrado");
+	public Course create(Course course) {
+		return courseDao.save(course);
+	}
+
+	@Override
+	public void update(Course course) {
+		courseDao.save(course);
+		
+	}
+
+	@Override
+	public Optional<Course> findById(Integer id) {
+		return courseDao.findById(id);
+	}
+
+	@Override
+	public Set<Course> findAll(Pageable p) {
+		return courseDao.findAll(PageRequest.of(p.getPageNumber(), p.getPageSize())).stream().collect(Collectors.toSet());
+	}
+
+	@Override
+	public void delete(Course course) {
+		courseDao.delete(course);
+		
 	}
 	
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		testCourse();
-	}
 }

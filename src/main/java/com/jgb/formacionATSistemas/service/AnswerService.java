@@ -1,5 +1,7 @@
 package com.jgb.formacionATSistemas.service;
 
-public interface AnswerService {
+import com.jgb.formacionATSistemas.model.Answer;
+
+public interface AnswerService extends AbstractService<Answer, Integer>{
 
 }

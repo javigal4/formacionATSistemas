@@ -1,4 +1,6 @@
 package com.jgb.formacionATSistemas.service;
 
-public interface ResultService {
+import com.jgb.formacionATSistemas.model.Result;
+
+public interface ResultService extends AbstractService<Result, Integer>{
 }

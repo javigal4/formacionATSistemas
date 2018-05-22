@@ -1,5 +1,7 @@
 package com.jgb.formacionATSistemas.service;
 
-public interface CourseService {
-	void testCourse();
+import com.jgb.formacionATSistemas.model.Course;
+
+public interface CourseService extends AbstractService<Course, Integer>{
+	
 }

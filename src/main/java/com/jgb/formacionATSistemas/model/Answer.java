@@ -21,7 +21,7 @@ public class Answer {
 	@GeneratedValue
 	private Integer idAnswer;
 	
-	private String answer;
+	private boolean answer;
 	
 	@JoinColumn(name = FIELD_QUESTION)
 	@ManyToOne(fetch = FetchType.LAZY)
