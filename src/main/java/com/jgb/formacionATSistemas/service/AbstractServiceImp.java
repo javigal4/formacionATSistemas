@@ -7,8 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jgb.formacionATSistemas.dao.AbstractDAO;
-import com.jgb.formacionATSistemas.dao.UserDAO;
-import com.jgb.formacionATSistemas.model.User;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
