@@ -21,7 +21,7 @@ import lombok.Setter;
 public class Question {
 
 	public static final String FIELD_QUIZ = "quiz";
-	public static final String FIELD_DIFFICULTY = "difficulty";
+	public static final String FIELD_TAG = "tag";
 	
 	@Id
 	@GeneratedValue
@@ -30,14 +30,17 @@ public class Question {
 	@Column(nullable = false)
 	private String question;
 	
-	@JoinColumn(name = FIELD_DIFFICULTY)
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Difficulty difficulty;
-	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Answer.FIELD_QUESTION)
 	private List<Answer> answer;
 	
 	@JoinColumn(name = FIELD_QUIZ)
 	@ManyToMany(fetch = FetchType.LAZY)
 	private List<Quiz> quiz;
+	
+	@JoinColumn(name = FIELD_TAG)
+	@ManyToOne(fetch = FetchType.LAZY)
+	Tag tag;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = AnswerUser.FIELD_QUESTION)
+	List<AnswerUser> answerUser;
 }

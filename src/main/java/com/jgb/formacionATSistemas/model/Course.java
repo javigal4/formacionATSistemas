@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import lombok.Getter;
@@ -28,4 +29,7 @@ public class Course {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Quiz.FIELD_COURSE)
 	private List<Quiz> quiz;
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = User.FIELD_COURSE)
+	List<User> user;
 }

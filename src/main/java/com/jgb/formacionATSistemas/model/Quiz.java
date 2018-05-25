@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,7 @@ public class Quiz {
 	
 	public static final String FIELD_COURSE = "course";
 	public static final String FIELD_TAG = "tag";
+	public static final String FIELD_ANSWER_USER = "answerUser";
 	
 	@Id
 	@GeneratedValue
@@ -39,5 +41,12 @@ public class Quiz {
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = Question.FIELD_QUIZ)
 	List<Question> question;
+	
+	@JoinColumn(name = FIELD_ANSWER_USER)
+	@ManyToOne(fetch = FetchType.LAZY)
+	private AnswerUser answerUser;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Result.FIELD_QUIZ)
+	private List<Result> result;
 	
 }
