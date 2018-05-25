@@ -12,32 +12,31 @@ import com.jgb.formacionATSistemas.model.Result;
 
 public class ResultServiceImp implements ResultService {
 
-	ResultDAO dao;
+	ResultDAO resultDao;
 
 	@Override
 	public Result create(Result result) {
-		return dao.save(result);
+		return resultDao.save(result);
 	}
 
 	@Override
 	public void update(Result result) {
-		dao.save(result);
+		resultDao.save(result);
 		
 	}
 
 	@Override
 	public Optional<Result> findById(Integer id) {
-		return dao.findById(id);
+		return resultDao.findById(id);
 	}
 
 	@Override
 	public Set<Result> findAll(Pageable p) {
-		return dao.findAll(PageRequest.of(p.getPageNumber(), p.getPageSize())).stream().collect(Collectors.toSet());
+		return resultDao.findAll(PageRequest.of(p.getPageNumber(), p.getPageSize())).stream().collect(Collectors.toSet());
 	}
 
 	@Override
 	public void delete(Result result) {
-		dao.delete(result);
-		
+		resultDao.delete(result);
 	}
 }

@@ -14,30 +14,30 @@ import com.jgb.formacionATSistemas.model.Tag;
 public class TagServiceImp implements TagService {
 	
 	@Autowired
-	TagDAO dao;
+	TagDAO tagDao;
 	
 	@Override
 	public Tag create(Tag tag) {
-		return dao.save(tag);
+		return tagDao.save(tag);
 	}
 	
 	@Override
 	public void update(Tag tag) {
-		dao.save(tag);
+		tagDao.save(tag);
 	}
 	
 	@Override
 	public Optional<Tag> findById(Integer id) {
-		return dao.findById(id);
+		return tagDao.findById(id);
 	}
 	
 	@Override
 	public Set<Tag> findAll(Pageable p) {
-		return dao.findAll(PageRequest.of(p.getPageNumber(), p.getPageSize())).stream().collect(Collectors.toSet());
+		return tagDao.findAll(PageRequest.of(p.getPageNumber(), p.getPageSize())).stream().collect(Collectors.toSet());
 	}
 	
 	@Override
 	public void delete(Tag tag) {
-		dao.delete(tag);
+		tagDao.delete(tag);
 	}
 }

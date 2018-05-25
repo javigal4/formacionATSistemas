@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
@@ -13,6 +13,7 @@ import com.jgb.formacionATSistemas.model.Answer;
 
 public class AnswerServiceImp implements AnswerService {
 
+	@Autowired
 	AnswerDAO answerDao;
 
 	@Override
@@ -40,7 +41,6 @@ public class AnswerServiceImp implements AnswerService {
 	public void delete(Answer answer) {
 		answerDao.delete(answer);
 		
-	}
-	
+	}	
 	
 }

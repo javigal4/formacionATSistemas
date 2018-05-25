@@ -4,7 +4,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +13,10 @@ import com.jgb.formacionATSistemas.model.Course;
 
 public class CourseServiceImp implements CourseService {
 
+	/**
+	 * @Author = Javier Gallardo
+	 */
+	private static final long serialVersionUID = 1L;
 	@Autowired
 	CourseDAO courseDao;
 
@@ -41,7 +44,5 @@ public class CourseServiceImp implements CourseService {
 	@Override
 	public void delete(Course course) {
 		courseDao.delete(course);
-		
 	}
-	
 }

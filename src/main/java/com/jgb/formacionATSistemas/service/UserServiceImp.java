@@ -16,30 +16,30 @@ import com.jgb.formacionATSistemas.model.User;
 public class UserServiceImp implements UserService{
 	
 	@Autowired
-	UserDAO dao;
+	UserDAO userDao;
 	
 	@Override
 	public User create(User user) {
-		return dao.save(user);
+		return userDao.save(user);
 	}
 	
 	@Override
 	public void update(User user) {
-		dao.save(user);
+		userDao.save(user);
 	}
 	
 	@Override
 	public Optional<User> findById(Integer id) {
-		return dao.findById(id);
+		return userDao.findById(id);
 	}
 	
 	@Override
 	public Set<User> findAll(Pageable p) {
-		return dao.findAll(PageRequest.of(p.getPageNumber(), p.getPageSize())).stream().collect(Collectors.toSet());
+		return userDao.findAll(PageRequest.of(p.getPageNumber(), p.getPageSize())).stream().collect(Collectors.toSet());
 	}
 	
 	@Override
 	public void delete(User user) {
-		dao.delete(user);
+		userDao.delete(user);
 	}
 }

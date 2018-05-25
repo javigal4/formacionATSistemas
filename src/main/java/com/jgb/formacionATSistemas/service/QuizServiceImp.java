@@ -4,13 +4,11 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import com.jgb.formacionATSistemas.dao.QuizDAO;
-import com.jgb.formacionATSistemas.model.Course;
 import com.jgb.formacionATSistemas.model.Quiz;
 
 public class QuizServiceImp implements QuizService {
@@ -41,8 +39,7 @@ public class QuizServiceImp implements QuizService {
 
 	@Override
 	public void delete(Quiz quiz) {
-		quizDao.delete(quiz);
-		
+		quizDao.delete(quiz);	
 	}
 
 }
