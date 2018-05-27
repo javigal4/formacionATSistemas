@@ -7,10 +7,12 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.jgb.formacionATSistemas.dao.AnswerUserDAO;
 import com.jgb.formacionATSistemas.model.AnswerUser;
 
+@Service
 public class AnswerUserServiceImp implements AnswerUserService{
 
 	@Autowired

@@ -6,10 +6,12 @@ import java.util.stream.Collectors;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.jgb.formacionATSistemas.dao.ResultDAO;
 import com.jgb.formacionATSistemas.model.Result;
 
+@Service
 public class ResultServiceImp implements ResultService {
 
 	ResultDAO resultDao;

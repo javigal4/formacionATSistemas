@@ -7,10 +7,13 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.jgb.formacionATSistemas.dao.AnswerDAO;
+import com.jgb.formacionATSistemas.exception.AnswerException;
 import com.jgb.formacionATSistemas.model.Answer;
 
+@Service
 public class AnswerServiceImp implements AnswerService {
 
 	@Autowired
@@ -18,6 +21,12 @@ public class AnswerServiceImp implements AnswerService {
 
 	@Override
 	public Answer create(Answer answer) {
+		if (answerDao.findByOkIsTrue().isPresent())
+			try {
+				throw new AnswerException();
+			} catch (AnswerException e) {
+				e.printStackTrace();
+			}
 		return answerDao.save(answer);
 	}
 

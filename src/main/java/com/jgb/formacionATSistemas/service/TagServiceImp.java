@@ -7,10 +7,12 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.jgb.formacionATSistemas.dao.TagDAO;
 import com.jgb.formacionATSistemas.model.Tag;
 
+@Service
 public class TagServiceImp implements TagService {
 	
 	@Autowired
