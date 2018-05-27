@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -19,10 +20,10 @@ import lombok.Setter;
 public class Tag {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idTag;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String tag;
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = Quiz.FIELD_TAG)

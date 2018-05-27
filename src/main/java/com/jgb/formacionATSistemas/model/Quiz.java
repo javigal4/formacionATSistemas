@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -22,13 +23,12 @@ public class Quiz {
 	
 	public static final String FIELD_COURSE = "course";
 	public static final String FIELD_TAG = "tag";
-	public static final String FIELD_ANSWER_USER = "answerUser";
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idQuiz;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String quiz;
 	
 	@JoinColumn(name = FIELD_COURSE)
@@ -42,9 +42,8 @@ public class Quiz {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = Question.FIELD_QUIZ)
 	List<Question> question;
 	
-	@JoinColumn(name = FIELD_ANSWER_USER)
-	@ManyToOne(fetch = FetchType.LAZY)
-	private AnswerUser answerUser;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = AnswerUser.FIELD_QUIZ)
+	private List<AnswerUser> answerUser;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Result.FIELD_QUIZ)
 	private List<Result> result;
