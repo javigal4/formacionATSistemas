@@ -1,5 +1,6 @@
 package com.jgb.formacionATSistemas.controller;
 
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,10 @@ import com.jgb.formacionATSistema.dto.UserPostDTO;
 import com.jgb.formacionATSistemas.component.UserMapper;
 import com.jgb.formacionATSistemas.model.User;
 import com.jgb.formacionATSistemas.service.UserService;
-import java.util.Optional;
 
+import lombok.extern.java.Log;
+
+@Log
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
@@ -32,6 +35,7 @@ public class UserController {
 			@RequestParam(defaultValue = "10", required = false) Integer size)
 	{
 		final Set<User> users = userService.findAll(PageRequest.of(page, size));
+		log.info("Obteniendo datos de todos los usuarios");
 		return userMapper.modelToDto(users);
 	}
 
@@ -40,20 +44,23 @@ public class UserController {
 	{
 		final User user = userMapper.dtoToModel(dto);
 		final User createUser = userService.create(user);
+		log.info("Se ha añadido " + createUser.getName() + " al sistema");
 		return userMapper.modelToDto(createUser);
 	}
-	
+	/*
 	@RequestMapping(method = RequestMethod.GET)
 	public UserDTO findById(@RequestParam Integer id)
 	{
 		final Optional<User> user = userService.findById(id);
 		return userMapper.modelToDto(user.get());
 	}
-	
+	*/
 	@RequestMapping(method = RequestMethod.PUT)
 	public UserDTO update(@RequestBody UserPostDTO dto) {
 		final User user = userMapper.dtoToModel(dto);
 		final Optional<User> userFind = userService.findById(user.getIdUser());
+		if (userFind.isPresent())
+			System.out.println(userFind.get().toString());
 		userService.update(userFind.get());
 		return userMapper.modelToDto(userFind.get());
 	}
