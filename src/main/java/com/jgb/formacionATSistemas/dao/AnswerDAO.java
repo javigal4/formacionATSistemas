@@ -11,4 +11,6 @@ import com.jgb.formacionATSistemas.model.Answer;
 public interface AnswerDAO extends PagingAndSortingRepository<Answer, Integer>{
 	
 	Optional<Answer> findOneByAnswerOrderByIdAnswerDesc(String Answer);
+	
+	Optional<Answer> findByOkIsTrue();
 }
