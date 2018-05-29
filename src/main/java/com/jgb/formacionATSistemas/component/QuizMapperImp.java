@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.jgb.formacionATSistema.dto.QuizDTO;
-import com.jgb.formacionATSistema.dto.UserDTO;
 import com.jgb.formacionATSistemas.model.Quiz;
-import com.jgb.formacionATSistemas.model.User;
 
 @Component
 public class QuizMapperImp implements QuizMapper{

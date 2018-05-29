@@ -11,5 +11,5 @@ public class QuizDTO {
 	
 	String quiz;
 	
-	Course course;
+	Integer course;
 }
