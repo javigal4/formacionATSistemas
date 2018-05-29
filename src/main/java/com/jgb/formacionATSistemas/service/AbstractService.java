@@ -6,6 +6,8 @@ import java.util.Set;
 
 import org.springframework.data.domain.Pageable;
 
+import com.jgb.formacionATSistemas.exception.NotFoundException;
+
 public interface AbstractService<T, ID> extends Serializable {
 
 	T create(T t);

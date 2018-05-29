@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jgb.formacionATSistema.dto.UserDTO;
 import com.jgb.formacionATSistema.dto.UserPostDTO;
 import com.jgb.formacionATSistemas.component.UserMapper;
+import com.jgb.formacionATSistemas.exception.NotFoundException;
 import com.jgb.formacionATSistemas.model.User;
 import com.jgb.formacionATSistemas.service.UserService;
 
@@ -38,6 +40,18 @@ public class UserController {
 		log.info("Obteniendo datos de todos los usuarios");
 		return userMapper.modelToDto(users);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/{idUser}")
+	public UserDTO findById(@PathVariable Integer idUser) throws NotFoundException
+	{
+		log.info("Obteniendo datos del usuario " + idUser);
+		Optional<User> user = userService.findById(idUser);
+		if (!user.isPresent())
+			//HACER EN SERVICE
+			throw new NotFoundException();
+		else
+			return userMapper.modelToDto(user.get());
+	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public UserDTO create(@RequestBody UserPostDTO dto)
@@ -47,33 +61,19 @@ public class UserController {
 		log.info("Se ha añadido " + createUser.getName() + " al sistema");
 		return userMapper.modelToDto(createUser);
 	}
-	/*
-	@RequestMapping(method = RequestMethod.GET)
-	public UserDTO findById(@RequestParam Integer id)
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/{idQuestion}")
+	public void update(@PathVariable("idUser") Integer idUser, @RequestBody UserDTO dto) throws NotFoundException
 	{
-		final Optional<User> user = userService.findById(id);
-		return userMapper.modelToDto(user.get());
+		log.info("Actualizando el usuario " + idUser);
+		User user = userMapper.dtoToModel(dto);
+		userService.update(user);
 	}
-	*/
-	@RequestMapping(method = RequestMethod.PUT)
-	public UserDTO update(@RequestBody UserPostDTO dto) {
-		final User user = userMapper.dtoToModel(dto);
-		final Optional<User> userFind = userService.findById(user.getIdUser());
-		if (userFind.isPresent())
-			System.out.println(userFind.get().toString());
-		userService.update(userFind.get());
-		return userMapper.modelToDto(userFind.get());
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{idQuestion}")
+	public void delete(@PathVariable("idUser") Integer idUser)
+	{
+		log.info("Eliminando usuario " + idUser);
+		userService.delete(userService.findById(idUser).get());
 	}
-	/*
-	@RequestMapping(method = RequestMethod.DELETE)
-	public void delete(@RequestBody UserDTO dto) {
-		final User user = userMapper.dtoToModel(dto);
-		userService.delete(user);
-	}
-	*/
-	/*@ResponseStatus(HttpStatus.NOT_FOUND)
-	@ExceptionHandler({NotFoundException.class})
-	public ErrorDTO notFound() {
-		return new ErrorDTO(NotFoundException.MSG);
-	}*/
 }
