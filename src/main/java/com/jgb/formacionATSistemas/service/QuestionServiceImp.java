@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jgb.formacionATSistemas.dao.QuestionDAO;
+import com.jgb.formacionATSistemas.exception.NotFoundException;
 import com.jgb.formacionATSistemas.model.Question;
 import com.jgb.formacionATSistemas.model.Quiz;
 import com.jgb.formacionATSistemas.model.Tag;
@@ -31,8 +32,9 @@ public class QuestionServiceImp implements QuestionService {
 
 	@Override
 	public void update(Question question) {
-		questionDao.save(question);
-		
+		Optional<Question> questionOpt = questionDao.findById(question.getIdQuestion());
+		if (questionOpt.isPresent())
+			questionDao.save(question);
 	}
 
 	@Override

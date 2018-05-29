@@ -11,5 +11,5 @@ public class QuestionDTO {
 	
 	String question;
 	
-	//Tag tag;
+	Integer tag;
 }
