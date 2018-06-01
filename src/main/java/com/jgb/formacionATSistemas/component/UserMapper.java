@@ -1,5 +1,6 @@
 package com.jgb.formacionATSistemas.component;
 
+import java.util.List;
 import java.util.Set;
 
 import com.jgb.formacionATSistema.dto.UserDTO;
@@ -9,9 +10,9 @@ public interface UserMapper {
 	
 	User dtoToModel(UserDTO dto);
 
-	UserDTO modelToDto(User model);
+	UserDTO modelToDto(User user);
 
-	Set<User> dtoToModel(Set<UserDTO> users);
+	List<User> dtoToModel(List<UserDTO> users);
 
-	Set<UserDTO> modelToDto(Set<User> models);
+	List<UserDTO> modelToDto(List<User> models);
 }

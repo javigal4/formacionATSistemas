@@ -1,6 +1,6 @@
 package com.jgb.formacionATSistemas.component;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.dozer.DozerBeanMapper;
@@ -17,7 +17,8 @@ public class UserMapperImp implements UserMapper{
 	public DozerBeanMapper dozer;
 	
 	@Override
-	public User dtoToModel(UserDTO dto) {
+	public User dtoToModel(UserDTO dto)
+	{
 		return dozer.map(dto, User.class);
 	}
 
@@ -27,13 +28,13 @@ public class UserMapperImp implements UserMapper{
 	}
 
 	@Override
-	public Set<User> dtoToModel(Set<UserDTO> users) {
-		return users.stream().map(d -> dtoToModel(d)).collect(Collectors.toSet());
+	public List<User> dtoToModel(List<UserDTO> users) {
+		return users.stream().map(d -> dtoToModel(d)).collect(Collectors.toList());
 	}
 
 	@Override
-	public Set<UserDTO> modelToDto(Set<User> models) {
-		return models.stream().map(m -> modelToDto(m)).collect(Collectors.toSet());
+	public List<UserDTO> modelToDto(List<User> models) {
+		return models.stream().map(m -> modelToDto(m)).collect(Collectors.toList());
 	}
 
 }

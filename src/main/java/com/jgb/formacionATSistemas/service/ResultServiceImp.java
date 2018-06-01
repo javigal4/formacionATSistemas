@@ -1,7 +1,7 @@
 package com.jgb.formacionATSistemas.service;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.PageRequest;
@@ -33,8 +33,8 @@ public class ResultServiceImp implements ResultService {
 	}
 
 	@Override
-	public Set<Result> findAll(Pageable p) {
-		return resultDao.findAll(PageRequest.of(p.getPageNumber(), p.getPageSize())).stream().collect(Collectors.toSet());
+	public List<Result> findAll(Pageable p) {
+		return resultDao.findAll(PageRequest.of(p.getPageNumber(), p.getPageSize())).stream().collect(Collectors.toList());
 	}
 
 	@Override

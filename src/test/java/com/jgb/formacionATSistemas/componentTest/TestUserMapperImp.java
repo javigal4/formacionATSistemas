@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.dozer.DozerBeanMapper;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -16,7 +17,7 @@ import com.jgb.formacionATSistemas.component.UserMapper;
 import com.jgb.formacionATSistemas.component.UserMapperImp;
 import com.jgb.formacionATSistemas.model.User;
 
-import junit.framework.Assert;
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class TestUserMapperImp implements TestUserMapper{
@@ -27,16 +28,14 @@ public class TestUserMapperImp implements TestUserMapper{
 	@Mock
 	DozerBeanMapper dozer;
 
-	private static final String NAME = "Pepe";
 	
 	@Test
 	public void testDtoToModel() {
 		final UserDTO userDTO = new UserDTO();
-		userDTO.setName(NAME );
 		final User user = new User();
-		Mockito.when(dozer.map(new UserDTO(), User.class)).thenReturn(user);
+		Mockito.when(dozer.map(userDTO, User.class)).thenReturn(user);
 		final User res = mapper.dtoToModel(userDTO);
-		Assert.assertEquals(NAME, res.getName());
+		Assert.assertEquals(res, user);
 	}
 
 	@Override

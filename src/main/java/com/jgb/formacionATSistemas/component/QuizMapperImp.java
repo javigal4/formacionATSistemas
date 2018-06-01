@@ -1,6 +1,6 @@
 package com.jgb.formacionATSistemas.component;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.dozer.DozerBeanMapper;
@@ -27,12 +27,12 @@ public class QuizMapperImp implements QuizMapper{
 	}
 
 	@Override
-	public Set<Quiz> dtoToModel(Set<QuizDTO> dtos) {
-		return dtos.stream().map(d -> dtoToModel(d)).collect(Collectors.toSet());
+	public List<Quiz> dtoToModel(List<QuizDTO> dtos) {
+		return dtos.stream().map(d -> dtoToModel(d)).collect(Collectors.toList());
 	}
 
 	@Override
-	public Set<QuizDTO> modelToDto(Set<Quiz> models) {
-		return models.stream().map(m -> modelToDto(m)).collect(Collectors.toSet());
+	public List<QuizDTO> modelToDto(List<Quiz> models) {
+		return models.stream().map(m -> modelToDto(m)).collect(Collectors.toList());
 	}
 }

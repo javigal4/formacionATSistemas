@@ -2,7 +2,6 @@ package com.jgb.formacionATSistemas.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.jgb.formacionATSistemas.dao.QuestionDAO;
 import com.jgb.formacionATSistemas.exception.NotFoundException;
+import com.jgb.formacionATSistemas.model.Answer;
 import com.jgb.formacionATSistemas.model.Question;
 import com.jgb.formacionATSistemas.model.Quiz;
 import com.jgb.formacionATSistemas.model.Tag;
@@ -23,10 +23,12 @@ public class QuestionServiceImp implements QuestionService {
 	QuestionDAO questionDao;
 	
 	@Autowired
-	TagService tagService;
+	AnswerService answerService;
+	
 
 	@Override
-	public Question create(Question question) {
+	public Question create(Question question)
+	{
 		return questionDao.save(question);
 	}
 
@@ -35,6 +37,10 @@ public class QuestionServiceImp implements QuestionService {
 		Optional<Question> questionOpt = questionDao.findById(question.getIdQuestion());
 		if (questionOpt.isPresent())
 			questionDao.save(question);
+		else
+			try {
+				throw new NotFoundException();
+			} catch (NotFoundException e) {}
 	}
 
 	@Override
@@ -43,8 +49,8 @@ public class QuestionServiceImp implements QuestionService {
 	}
 
 	@Override
-	public Set<Question> findAll(Pageable p) {
-		return questionDao.findAll(PageRequest.of(p.getPageNumber(), p.getPageSize())).stream().collect(Collectors.toSet());
+	public List<Question> findAll(Pageable p) {
+		return questionDao.findAll(PageRequest.of(p.getPageNumber(), p.getPageSize())).stream().collect(Collectors.toList());
 	}
 
 	@Override
@@ -60,8 +66,27 @@ public class QuestionServiceImp implements QuestionService {
 	}
 
 	@Override
-	public Optional<Tag> findTagById(Integer tagId) {
-		return tagService.findById(tagId);
+	public Tag findTagById(Integer idQuestion) {
+		Optional<Question> question = questionDao.findById(idQuestion);
+		System.out.println("ksdnjfHOLAAAAAAAAAAAAAAAA");
+		return question.get().getTag();
+	}
+	
+	public List<Answer> findAnswerById(Integer questionId)
+	{
+		Optional<Question> question = questionDao.findById(questionId);
+		return question.get().getAnswer();
+	}
+
+	@Override
+	public List<Question> findByTag(Integer tag) {
+		return questionDao.findByTag(tag);
+	}
+	
+	@Override
+	public Answer createAnswer(Answer answer)
+	{
+		return answerService.create(answer);
 	}
 	
 }

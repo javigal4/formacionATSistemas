@@ -1,5 +1,6 @@
 package com.jgb.formacionATSistemas.controller;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -33,10 +34,10 @@ public class UserController {
 	UserMapper userMapper;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public Set<UserDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
+	public List<UserDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size)
 	{
-		final Set<User> users = userService.findAll(PageRequest.of(page, size));
+		final List<User> users = userService.findAll(PageRequest.of(page, size));
 		log.info("Obteniendo datos de todos los usuarios");
 		return userMapper.modelToDto(users);
 	}

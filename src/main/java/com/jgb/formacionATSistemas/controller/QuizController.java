@@ -1,6 +1,6 @@
 package com.jgb.formacionATSistemas.controller;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -24,12 +24,12 @@ public class QuizController {
 	
 	@Autowired
 	QuizMapper quizMapper;
-	
+	/*
 	@RequestMapping(method = RequestMethod.GET)
-	public Set<QuizDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
+	public List<QuizDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size)
 	{
-		final Set<Quiz> quiz = quizService.findAll(PageRequest.of(page, size));
+		final List<Quiz> quiz = quizService.findAll(PageRequest.of(page, size));
 		return quizMapper.modelToDto(quiz);
 	}
 
@@ -40,4 +40,5 @@ public class QuizController {
 		final Quiz createQuiz = quizService.create(quiz);
 		return quizMapper.modelToDto(createQuiz);
 	}
+	*/
 }

@@ -1,12 +1,10 @@
 package com.jgb.formacionATSistemas.service;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.data.domain.Pageable;
-
-import com.jgb.formacionATSistemas.exception.NotFoundException;
 
 public interface AbstractService<T, ID> extends Serializable {
 
@@ -16,7 +14,7 @@ public interface AbstractService<T, ID> extends Serializable {
 	
 	Optional<T> findById(ID id);
 	
-	Set<T> findAll(Pageable p);
+	List<T> findAll(Pageable p);
 	
 	void delete(T t);
 }

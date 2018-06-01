@@ -1,6 +1,6 @@
 package com.jgb.formacionATSistema.dto;
 
-import com.jgb.formacionATSistemas.model.Tag;
+import java.util.List;
 
 import lombok.Data;
 
@@ -11,5 +11,9 @@ public class QuestionDTO {
 	
 	String question;
 	
-	Integer tag;
+	Integer tagId;
+	
+	List<Integer> answers;
+
+	//List<Integer> answerUsers;
 }

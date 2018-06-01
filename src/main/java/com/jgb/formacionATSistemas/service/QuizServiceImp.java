@@ -2,7 +2,6 @@ package com.jgb.formacionATSistemas.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.jgb.formacionATSistemas.dao.QuestionDAO;
 import com.jgb.formacionATSistemas.dao.QuizDAO;
 import com.jgb.formacionATSistemas.model.Question;
 import com.jgb.formacionATSistemas.model.Quiz;
@@ -41,8 +39,8 @@ public class QuizServiceImp implements QuizService {
 	}
 
 	@Override
-	public Set<Quiz> findAll(Pageable p) {
-		return quizDao.findAll(PageRequest.of(p.getPageNumber(), p.getPageSize())).stream().collect(Collectors.toSet());
+	public List<Quiz> findAll(Pageable p) {
+		return quizDao.findAll(PageRequest.of(p.getPageNumber(), p.getPageSize())).stream().collect(Collectors.toList());
 	}
 
 	@Override
