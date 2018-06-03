@@ -1,4 +1,4 @@
-package com.jgb.formacionATSistema.dto;
+package com.jgb.formacionATSistemas.dto;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class QuestionDTO {
 	
 	Integer tagId;
 	
-	List<Integer> answers;
+	List<AnswerGetDTO> answers;
 
 	//List<Integer> answerUsers;
 }

@@ -1,4 +1,4 @@
-package com.jgb.formacionATSistemas.service;
+package com.jgb.formacionATSistemas.service.imp;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,10 +10,15 @@ import org.springframework.stereotype.Service;
 
 import com.jgb.formacionATSistemas.dao.ResultDAO;
 import com.jgb.formacionATSistemas.model.Result;
+import com.jgb.formacionATSistemas.service.ResultService;
 
 @Service
 public class ResultServiceImp implements ResultService {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8049445544124997698L;
 	ResultDAO resultDao;
 
 	@Override

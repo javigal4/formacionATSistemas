@@ -1,4 +1,4 @@
-package com.jgb.formacionATSistemas.service;
+package com.jgb.formacionATSistemas.service.imp;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +11,15 @@ import org.springframework.stereotype.Service;
 
 import com.jgb.formacionATSistemas.dao.AnswerUserDAO;
 import com.jgb.formacionATSistemas.model.AnswerUser;
+import com.jgb.formacionATSistemas.service.AnswerUserService;
 
 @Service
 public class AnswerUserServiceImp implements AnswerUserService{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2263342440186004221L;
 	@Autowired
 	AnswerUserDAO answerUserDao;
 

@@ -1,8 +1,8 @@
 package com.jgb.formacionATSistemas.service;
 
 import java.util.List;
-import java.util.Optional;
 
+import com.jgb.formacionATSistemas.exception.NotFoundException;
 import com.jgb.formacionATSistemas.model.Answer;
 import com.jgb.formacionATSistemas.model.Question;
 import com.jgb.formacionATSistemas.model.Quiz;
@@ -12,7 +12,7 @@ public interface QuestionService extends AbstractService<Question, Integer>{
 
 	public List<Question> findByQuiz(Quiz quiz);
 	
-	public Tag findTagById(Integer tagId);
+	public Tag findTag(Question question) throws NotFoundException;
 	
 	public List<Answer> findAnswerById(Integer questionId);
 	

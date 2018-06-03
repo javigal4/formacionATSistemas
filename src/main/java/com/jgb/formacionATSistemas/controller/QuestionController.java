@@ -2,7 +2,6 @@ package com.jgb.formacionATSistemas.controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -13,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jgb.formacionATSistema.dto.AnswerDTO;
-import com.jgb.formacionATSistema.dto.QuestionDTO;
 import com.jgb.formacionATSistemas.component.AnswerMapper;
 import com.jgb.formacionATSistemas.component.QuestionMapper;
+import com.jgb.formacionATSistemas.dto.AnswerDTO;
+import com.jgb.formacionATSistemas.dto.QuestionDTO;
+import com.jgb.formacionATSistemas.dto.QuestionPostDTO;
 import com.jgb.formacionATSistemas.exception.NotFoundException;
 import com.jgb.formacionATSistemas.model.Answer;
 import com.jgb.formacionATSistemas.model.Question;
@@ -75,12 +75,13 @@ public class QuestionController {
 	//-------------------Create a question--------------------------------------------------------
 
 	@RequestMapping(method = RequestMethod.POST)
-	public QuestionDTO create(@RequestBody QuestionDTO dto)
+	public QuestionDTO create(@RequestBody QuestionPostDTO dto)
 	{
 		log.info("Creando una pregunta");
 		final Question createQuestion = questionMapper.dtoToModel(dto);
-		System.out.println("HOLA " + createQuestion.getQuestion());
 		questionService.create(createQuestion);
+		//NO CONSIGO CREAR LA QUESTION
+		log.info("Se ha creado");
 		return questionMapper.modelToDto(createQuestion);
 	}
 
@@ -93,6 +94,8 @@ public class QuestionController {
 	{
 		log.info("Creando respuesta a la pregunta con id: " + idQuestion);
 		Answer answer = answerMapper.dtoToModel(dto);
+		Optional<Question> question = questionService.findById(idQuestion);
+		answer.setQuestion(question.get());
 		return answerMapper.modelToDto(questionService.createAnswer(answer));
 	}
 	

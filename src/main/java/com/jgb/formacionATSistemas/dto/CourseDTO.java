@@ -1,4 +1,4 @@
-package com.jgb.formacionATSistema.dto;
+package com.jgb.formacionATSistemas.dto;
 
 import java.util.List;
 

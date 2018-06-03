@@ -2,7 +2,7 @@ package com.jgb.formacionATSistemas.component;
 
 import java.util.List;
 
-import com.jgb.formacionATSistema.dto.QuizDTO;
+import com.jgb.formacionATSistemas.dto.QuizDTO;
 import com.jgb.formacionATSistemas.model.Quiz;
 
 public interface QuizMapper {

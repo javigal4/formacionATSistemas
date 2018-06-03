@@ -31,6 +31,8 @@ public class Quiz {
 	@Column(nullable = false, unique = true)
 	private String quiz;
 	
+	private Boolean rand;
+	
 	@JoinColumn(name = FIELD_COURSE)
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Course course;

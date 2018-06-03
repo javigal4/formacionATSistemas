@@ -1,4 +1,4 @@
-package com.jgb.formacionATSistemas.service;
+package com.jgb.formacionATSistemas.service.imp;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,15 +15,26 @@ import com.jgb.formacionATSistemas.model.Answer;
 import com.jgb.formacionATSistemas.model.Question;
 import com.jgb.formacionATSistemas.model.Quiz;
 import com.jgb.formacionATSistemas.model.Tag;
+import com.jgb.formacionATSistemas.service.AnswerService;
+import com.jgb.formacionATSistemas.service.QuestionService;
+import com.jgb.formacionATSistemas.service.TagService;
 
 @Service
 public class QuestionServiceImp implements QuestionService {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7099444472387471077L;
 
 	@Autowired
 	QuestionDAO questionDao;
 	
 	@Autowired
 	AnswerService answerService;
+	
+	@Autowired
+	TagService tagService;
 	
 
 	@Override
@@ -66,10 +77,8 @@ public class QuestionServiceImp implements QuestionService {
 	}
 
 	@Override
-	public Tag findTagById(Integer idQuestion) {
-		Optional<Question> question = questionDao.findById(idQuestion);
-		System.out.println("ksdnjfHOLAAAAAAAAAAAAAAAA");
-		return question.get().getTag();
+	public Tag findTag(Question question) throws NotFoundException {
+		return tagService.findByQuestion(question);
 	}
 	
 	public List<Answer> findAnswerById(Integer questionId)

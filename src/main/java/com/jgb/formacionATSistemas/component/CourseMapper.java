@@ -2,7 +2,7 @@ package com.jgb.formacionATSistemas.component;
 
 import java.util.List;
 
-import com.jgb.formacionATSistema.dto.CourseDTO;
+import com.jgb.formacionATSistemas.dto.CourseDTO;
 import com.jgb.formacionATSistemas.model.Course;
 
 public interface CourseMapper {

@@ -12,9 +12,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.jgb.formacionATSistema.dto.UserDTO;
 import com.jgb.formacionATSistemas.component.UserMapper;
-import com.jgb.formacionATSistemas.component.UserMapperImp;
+import com.jgb.formacionATSistemas.component.imp.UserMapperImp;
+import com.jgb.formacionATSistemas.dto.UserDTO;
 import com.jgb.formacionATSistemas.model.User;
 
 

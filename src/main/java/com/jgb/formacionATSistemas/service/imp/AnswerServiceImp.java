@@ -1,8 +1,7 @@
-package com.jgb.formacionATSistemas.service;
+package com.jgb.formacionATSistemas.service.imp;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +12,15 @@ import org.springframework.stereotype.Service;
 import com.jgb.formacionATSistemas.dao.AnswerDAO;
 import com.jgb.formacionATSistemas.exception.AnswerException;
 import com.jgb.formacionATSistemas.model.Answer;
+import com.jgb.formacionATSistemas.service.AnswerService;
 
 @Service
 public class AnswerServiceImp implements AnswerService {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8874331881661582393L;
 	@Autowired
 	AnswerDAO answerDao;
 

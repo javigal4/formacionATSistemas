@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.jgb.formacionATSistemas.model.Question;
 import com.jgb.formacionATSistemas.model.Quiz;
-import com.jgb.formacionATSistemas.model.Tag;
 
 @Repository
 public interface QuestionDAO extends PagingAndSortingRepository<Question, Integer>{

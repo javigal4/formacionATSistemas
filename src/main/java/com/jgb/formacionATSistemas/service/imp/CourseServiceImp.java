@@ -1,4 +1,4 @@
-package com.jgb.formacionATSistemas.service;
+package com.jgb.formacionATSistemas.service.imp;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +13,7 @@ import com.jgb.formacionATSistemas.dao.CourseDAO;
 import com.jgb.formacionATSistemas.model.Course;
 import com.jgb.formacionATSistemas.model.Quiz;
 import com.jgb.formacionATSistemas.model.User;
+import com.jgb.formacionATSistemas.service.CourseService;
 
 @Service
 public class CourseServiceImp implements CourseService {

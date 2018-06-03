@@ -1,15 +1,15 @@
-package com.jgb.formacionATSistema.dto;
-
-import java.util.List;
+package com.jgb.formacionATSistemas.dto;
 
 import lombok.Data;
 
 @Data
 public class AnswerDTO {
 
-	Integer idAnswer;
+	//Integer idAnswer;
 	
 	String answer;
 	
 	boolean ok;
+	
+	Integer idQuestion;
 }

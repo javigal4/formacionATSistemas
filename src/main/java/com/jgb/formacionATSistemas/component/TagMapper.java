@@ -2,7 +2,7 @@ package com.jgb.formacionATSistemas.component;
 
 import java.util.List;
 
-import com.jgb.formacionATSistema.dto.TagDTO;
+import com.jgb.formacionATSistemas.dto.TagDTO;
 import com.jgb.formacionATSistemas.model.Tag;
 
 public interface TagMapper {

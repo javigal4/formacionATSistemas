@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.jgb.formacionATSistema.dto.ErrorDTO;
+import com.jgb.formacionATSistemas.dto.ErrorDTO;
 import com.jgb.formacionATSistemas.exception.NotFoundException;
 
 @ResponseBody

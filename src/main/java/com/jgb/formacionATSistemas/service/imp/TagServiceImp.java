@@ -1,4 +1,4 @@
-package com.jgb.formacionATSistemas.service;
+package com.jgb.formacionATSistemas.service.imp;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,11 +10,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jgb.formacionATSistemas.dao.TagDAO;
+import com.jgb.formacionATSistemas.exception.NotFoundException;
+import com.jgb.formacionATSistemas.model.Question;
+import com.jgb.formacionATSistemas.model.Quiz;
 import com.jgb.formacionATSistemas.model.Tag;
+import com.jgb.formacionATSistemas.service.TagService;
 
 @Service
 public class TagServiceImp implements TagService {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5046988423186458184L;
 	@Autowired
 	TagDAO tagDao;
 	
@@ -41,5 +49,20 @@ public class TagServiceImp implements TagService {
 	@Override
 	public void delete(Tag tag) {
 		tagDao.delete(tag);
+	}
+	
+	@Override
+	public Tag findByQuestion(Question question) throws NotFoundException
+	{
+		Optional<Tag> tag = tagDao.findByQuestion(question);
+		if (tag.isPresent())
+			return tag.get();
+		else
+			throw new NotFoundException();
+	}
+
+	@Override
+	public List<Tag> findByQuiz(Quiz quiz) {
+		return tagDao.findByQuiz(quiz);
 	}
 }

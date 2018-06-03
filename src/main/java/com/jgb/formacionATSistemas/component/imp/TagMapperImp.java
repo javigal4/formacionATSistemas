@@ -1,4 +1,4 @@
-package com.jgb.formacionATSistemas.component;
+package com.jgb.formacionATSistemas.component.imp;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,11 +7,12 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.jgb.formacionATSistema.dto.TagDTO;
+import com.jgb.formacionATSistemas.component.TagMapper;
+import com.jgb.formacionATSistemas.dto.TagDTO;
 import com.jgb.formacionATSistemas.model.Tag;
 
 @Component
-public class TagMapperImp implements TagMapper{
+public class TagMapperImp implements TagMapper {
 
 	@Autowired
 	public DozerBeanMapper dozer;
@@ -35,6 +36,5 @@ public class TagMapperImp implements TagMapper{
 	public List<TagDTO> modelToDto(List<Tag> models) {
 		return models.stream().map(a -> modelToDto(a)).collect(Collectors.toList());
 	}
-	
 
 }

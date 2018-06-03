@@ -1,4 +1,4 @@
-package com.jgb.formacionATSistemas.component;
+package com.jgb.formacionATSistemas.component.imp;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,18 +7,18 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.jgb.formacionATSistema.dto.UserDTO;
+import com.jgb.formacionATSistemas.component.UserMapper;
+import com.jgb.formacionATSistemas.dto.UserDTO;
 import com.jgb.formacionATSistemas.model.User;
 
 @Component
-public class UserMapperImp implements UserMapper{
+public class UserMapperImp implements UserMapper {
 
 	@Autowired
 	public DozerBeanMapper dozer;
-	
+
 	@Override
-	public User dtoToModel(UserDTO dto)
-	{
+	public User dtoToModel(UserDTO dto) {
 		return dozer.map(dto, User.class);
 	}
 

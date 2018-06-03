@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jgb.formacionATSistema.dto.CourseDTO;
 import com.jgb.formacionATSistemas.component.AnswerMapper;
 import com.jgb.formacionATSistemas.component.CourseMapper;
+import com.jgb.formacionATSistemas.dto.CourseDTO;
 import com.jgb.formacionATSistemas.exception.NotFoundException;
 import com.jgb.formacionATSistemas.model.Course;
 import com.jgb.formacionATSistemas.service.CourseService;
@@ -57,40 +57,18 @@ public class CourseController {
 			return courseMapper.modelToDto(course.get());
 	}
 	
-	//-------------------Find courses by tag--------------------------------------------------------
-	/*
-	@RequestMapping(method = RequestMethod.GET, value="/{idCourse}/quiz/{idQuiz}")
-	public List<CourseDTO> findByTag(@PathVariable Integer idCourse, @PathVariable Integer idQuiz)
-	{
-		
-	}
-	*/
-	
 	
 	//-------------------Create a course--------------------------------------------------------
 
 	@RequestMapping(method = RequestMethod.POST)
 	public CourseDTO create(@RequestBody CourseDTO dto)
 	{
-		log.info("Creando una pregunta");
+		log.info("Creando un curso");
 		final Course createCourse = courseMapper.dtoToModel(dto);
-		System.out.println("HOLA " + createCourse.getCourse());
 		courseService.create(createCourse);
 		return courseMapper.modelToDto(createCourse);
 	}
 
-	
-	
-	//-------------------Create an answer to a course--------------------------------------------------------
-	/*
-	@RequestMapping(method = RequestMethod.POST, value = "/{idCourse}/answer")
-	public AnswerDTO createAnswer(@PathVariable("idCourse") Integer idCourse , @RequestBody AnswerDTO dto)
-	{
-		log.info("Creando respuesta a la pregunta con id: " + idCourse);
-		Answer answer = answerMapper.dtoToModel(dto);
-		return answerMapper.modelToDto(courseService.createAnswer(answer));
-	}
-	
 	
 	//-------------------Update course--------------------------------------------------------
 	
@@ -98,16 +76,31 @@ public class CourseController {
 	public void update(@PathVariable("idCourse") Integer idCourse, @RequestBody CourseDTO dto) throws NotFoundException
 	{
 		log.info("Actualizando la pregunta " + idCourse);
-		Course course = courseMapper.dtoToModel(dto);
-		courseService.update(course);
+		
+		Optional<Course> courseFind = courseService.findById(idCourse);
+		if (courseFind.isPresent())	
+		{
+			Course course = courseMapper.dtoToModel(dto);
+			course.setIdCourse(idCourse);
+			courseService.update(course);
+		}
+		else
+			throw new NotFoundException();
 	}
 	
+	
+	//-------------------Delete course--------------------------------------------------------
+	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{idCourse}")
-	public void delete(@PathVariable("idCourse") Integer idCourse)
+	public void delete(@PathVariable("idCourse") Integer idCourse) throws NotFoundException
 	{
-		log.info("Eliminando pregunta " + idCourse + " y todas sus respuestas");
-		courseService.delete(courseService.findById(idCourse).get());
+		log.info("Eliminando curso " + idCourse);
+		
+		Optional<Course> course = courseService.findById(idCourse);
+		if (course.isPresent())
+			courseService.delete(course.get());
+		else
+			throw new NotFoundException();
 	}
-	*/
 
 }
