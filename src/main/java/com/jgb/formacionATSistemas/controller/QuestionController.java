@@ -16,7 +16,6 @@ import com.jgb.formacionATSistemas.component.AnswerMapper;
 import com.jgb.formacionATSistemas.component.QuestionMapper;
 import com.jgb.formacionATSistemas.dto.AnswerDTO;
 import com.jgb.formacionATSistemas.dto.QuestionDTO;
-import com.jgb.formacionATSistemas.dto.QuestionPostDTO;
 import com.jgb.formacionATSistemas.exception.NotFoundException;
 import com.jgb.formacionATSistemas.model.Answer;
 import com.jgb.formacionATSistemas.model.Question;
@@ -60,28 +59,15 @@ public class QuestionController {
 			return questionMapper.modelToDto(question.get());
 	}
 	
-	//-------------------Find questions by tag--------------------------------------------------------
-	/*
-	@RequestMapping(method = RequestMethod.GET)
-	public List<QuestionDTO> findByTag(@RequestParam(value = "idTag", required = false) Integer idTag)
-	{
-		log.info("A ve si entro con sus muertos!");
-		List<Question> questions = questionService.findByTag(idTag);
-		return questionMapper.modelToDto(questions);
-	}
-	*/
-	
 	
 	//-------------------Create a question--------------------------------------------------------
 
 	@RequestMapping(method = RequestMethod.POST)
-	public QuestionDTO create(@RequestBody QuestionPostDTO dto)
+	public QuestionDTO create(@RequestBody QuestionDTO dto)
 	{
 		log.info("Creando una pregunta");
 		final Question createQuestion = questionMapper.dtoToModel(dto);
 		questionService.create(createQuestion);
-		//NO CONSIGO CREAR LA QUESTION
-		log.info("Se ha creado");
 		return questionMapper.modelToDto(createQuestion);
 	}
 

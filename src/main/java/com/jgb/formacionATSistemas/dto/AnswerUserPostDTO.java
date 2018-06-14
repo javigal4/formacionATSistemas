@@ -3,15 +3,17 @@ package com.jgb.formacionATSistemas.dto;
 import lombok.Data;
 
 @Data
-public class AnswerUserDTO {
+public class AnswerUserPostDTO {
 
 	private Integer idAnswerUser;
 	
 	private String answer;
 	
+	private Boolean ok;
+	
 	private Integer idUser;
 	
-	private Integer idQuestion;
+	private Integer IdQuestion;
 	
-	private Integer idQuiz;
+	private Integer IdQuiz;
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.jgb.formacionATSistemas.dao.AnswerDAO;
 import com.jgb.formacionATSistemas.exception.AnswerException;
 import com.jgb.formacionATSistemas.model.Answer;
+import com.jgb.formacionATSistemas.model.Question;
 import com.jgb.formacionATSistemas.service.AnswerService;
 
 @Service
@@ -55,6 +56,11 @@ public class AnswerServiceImp implements AnswerService {
 	public void delete(Answer answer) {
 		answerDao.delete(answer);
 		
+	}
+
+	@Override
+	public Optional<Answer> findByOkisTrueAndQuestion(Question question) {
+		return answerDao.findByOkTrueAndQuestion(question);
 	}	
 	
 }

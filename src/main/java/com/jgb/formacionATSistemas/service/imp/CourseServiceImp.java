@@ -10,10 +10,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jgb.formacionATSistemas.dao.CourseDAO;
+import com.jgb.formacionATSistemas.model.Answer;
+import com.jgb.formacionATSistemas.model.AnswerUser;
 import com.jgb.formacionATSistemas.model.Course;
+import com.jgb.formacionATSistemas.model.Question;
 import com.jgb.formacionATSistemas.model.Quiz;
 import com.jgb.formacionATSistemas.model.User;
+import com.jgb.formacionATSistemas.service.AnswerService;
+import com.jgb.formacionATSistemas.service.AnswerUserService;
 import com.jgb.formacionATSistemas.service.CourseService;
+import com.jgb.formacionATSistemas.service.QuestionService;
+import com.jgb.formacionATSistemas.service.QuizService;
 
 @Service
 public class CourseServiceImp implements CourseService {
@@ -24,6 +31,18 @@ public class CourseServiceImp implements CourseService {
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	CourseDAO courseDao;
+	
+	@Autowired
+	QuizService quizService;
+	
+	@Autowired
+	QuestionService questionService;
+	
+	@Autowired
+	AnswerUserService answerUserService;
+	
+	@Autowired
+	AnswerService answerService;
 
 	@Override
 	public Course create(Course course)
@@ -63,5 +82,20 @@ public class CourseServiceImp implements CourseService {
 	{
 		Optional<Course> course = findById(courseId);
 		return course.get().getQuiz();
+	}
+
+	@Override
+	public Optional<Quiz> findQuizByIdQuiz(Integer idQuiz) {
+		return quizService.findById(idQuiz);
+	}
+
+	@Override
+	public AnswerUser create(AnswerUser answerUser) {
+		return answerUserService.create(answerUser);
+	}
+
+	@Override
+	public Optional<Answer> findAnswerByOkAndQuestion(Question question) {
+		return answerService.findByOkisTrueAndQuestion(question);
 	}
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.jgb.formacionATSistemas.component.AnswerUserMapper;
 import com.jgb.formacionATSistemas.dto.AnswerUserDTO;
 import com.jgb.formacionATSistemas.model.AnswerUser;
+import com.jgb.formacionATSistemas.service.AnswerUserService;
 
 @Component
 public class AnswerUserMapperImp implements AnswerUserMapper {
@@ -17,17 +18,45 @@ public class AnswerUserMapperImp implements AnswerUserMapper {
 	@Autowired
 	public DozerBeanMapper dozer;
 	
+	@Autowired
+	public AnswerUserService answerUserService;
+	
 
 	@Override
 	public AnswerUser dtoToModel(AnswerUserDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		AnswerUser answerUser = new AnswerUser();
+		answerUser.setIdAnswerUser(dto.getIdAnswerUser());
+		answerUser.setAnswer(dto.getAnswer());
+		
+		if (dto.getIdQuestion() != null)
+			answerUser.setQuestion(answerUserService.findQuestionByIdQuestion(dto.getIdQuestion()).get());
+		
+		if (dto.getIdQuiz() != null)
+			answerUser.setQuiz(answerUserService.findQuizByIdQuiz(dto.getIdQuiz()).get());
+		
+		if (dto.getIdUser() != null)
+			answerUser.setUser(answerUserService.findUserByIdUser(dto.getIdUser()).get());
+		
+		return answerUser;
 	}
 
 	@Override
 	public AnswerUserDTO modelToDto(AnswerUser model) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		AnswerUserDTO answerUserDTO = new AnswerUserDTO();
+		answerUserDTO.setIdAnswerUser(model.getIdAnswerUser());
+		answerUserDTO.setAnswer(model.getAnswer());
+		
+		if (model.getQuestion() != null)
+			answerUserDTO.setIdQuestion(model.getQuestion().getIdQuestion());
+		
+		if (model.getQuiz() != null)
+			answerUserDTO.setIdQuiz(model.getQuiz().getIdQuiz());
+		
+		if (model.getUser() != null)
+			answerUserDTO.setIdUser(model.getUser().getIdUser());
+		
+		return answerUserDTO;	
 	}
 	
 	@Override

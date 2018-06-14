@@ -45,6 +45,7 @@ public class QuizController {
 	public List<QuizDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size)
 	{
+		log.info("Obteniendo datos de todos los cuestionarios");
 		final List<Quiz> quiz = quizService.findAll(PageRequest.of(page, size));
 		return quizMapper.modelToDto(quiz);
 	}
@@ -54,6 +55,7 @@ public class QuizController {
 	@GetMapping("/{idQuiz}")
 	public QuizDTO findById(@PathVariable("idQuiz") Integer idQuiz)
 	{
+		log.info("Obteniendo datos de un cuestionario");
 		final Optional<Quiz> quiz = quizService.findById(idQuiz);
 		return quizMapper.modelToDto(quiz.get());
 	}
@@ -63,6 +65,7 @@ public class QuizController {
 	@GetMapping("/{idQuiz}/question")
 	public List<QuestionDTO> findQuestionByQuiz(@PathVariable("idQuiz") Integer idQuiz)
 	{
+		log.info("Obteniendo las preguntas de un cuestionario");
 		Optional<Quiz> quiz = quizService.findById(idQuiz);
 		List<Question> questions = quizService.findQuestionByQuiz(quiz.get());
 		
@@ -77,6 +80,7 @@ public class QuizController {
 	@RequestMapping(method = RequestMethod.POST)
 	public QuizDTO create(@RequestBody QuizDTO dto)
 	{
+		log.info("Creando un cuestionario");
 		final Quiz quiz = quizMapper.dtoToModel(dto);
 		final Quiz createQuiz = quizService.create(quiz);
 		return quizMapper.modelToDto(createQuiz);
@@ -87,7 +91,7 @@ public class QuizController {
 	@RequestMapping(method = RequestMethod.PUT)
 	public void update(@RequestBody QuizDTO dto) throws NotFoundException
 	{
-		log.info("Actualizando la pregunta");
+		log.info("Actualizando un cuestionario");
 		
 		Optional<Quiz> quizFind = quizService.findById(dto.getIdQuiz());
 		if (quizFind.isPresent())	
@@ -104,7 +108,7 @@ public class QuizController {
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{idQuiz}")
 	public void delete(@PathVariable("idQuiz") Integer idQuiz) throws NotFoundException
 	{
-		log.info("Eliminando quiz " + idQuiz);
+		log.info("Eliminando cuestionario " + idQuiz);
 		
 		Optional<Quiz> quiz = quizService.findById(idQuiz);
 		if (quiz.isPresent())

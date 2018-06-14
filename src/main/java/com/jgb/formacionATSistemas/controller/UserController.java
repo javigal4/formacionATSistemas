@@ -96,7 +96,7 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{idUser}")
 	public void delete(@PathVariable("idUser") Integer idUser) throws NotFoundException
 	{
-		log.info("Eliminando user " + idUser);
+		log.info("Eliminando usuario " + idUser);
 		
 		Optional<User> user = userService.findById(idUser);
 		if (user.isPresent())

@@ -1,6 +1,7 @@
 package com.jgb.formacionATSistemas.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
@@ -16,4 +17,6 @@ public interface QuestionDAO extends PagingAndSortingRepository<Question, Intege
 	List<Question> findByQuiz(Quiz quiz);
 	
 	List<Question> findByTag(Integer tag);
+	
+	Optional<Question> findByQuestion(String question);
 }

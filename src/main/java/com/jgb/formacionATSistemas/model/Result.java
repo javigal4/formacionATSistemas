@@ -29,6 +29,8 @@ public class Result {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
+	
+	private Double result;
 
 	@JoinColumn(name = FIELD_USER)
 	@ManyToOne(fetch = FetchType.LAZY)

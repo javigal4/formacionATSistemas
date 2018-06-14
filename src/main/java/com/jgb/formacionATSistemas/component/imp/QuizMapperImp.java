@@ -65,10 +65,11 @@ public class QuizMapperImp implements QuizMapper {
 	public QuizDTO modelToDto(Quiz model) {
 		log.info("Map Quiz: model to DTO");
 		
-		QuizDTO quizDTO = dozer.map(model, QuizDTO.class);
-		
+		QuizDTO quizDTO = new QuizDTO();
+		quizDTO.setIdQuiz(model.getIdQuiz());
+		quizDTO.setRand(model.getRand());
 		quizDTO.setQuiz(model.getQuiz());
-
+		//Si tiene preguntas, mapearlas y añadirlas
 		if (!model.getQuestion().isEmpty())
 		{
 			List<Question> questions = quizService.findQuestionByQuiz(model);
@@ -78,6 +79,13 @@ public class QuizMapperImp implements QuizMapper {
 			quizDTO.setQuestions(questionInt);
 		}
 		
+		//Si tiene un curso, añadirlo
+		if (model.getCourse() != null)
+		{
+			quizDTO.setCourse(model.getCourse().getIdCourse());
+		}
+		
+		//Si tiene tags, mapearlos y añadirlos
 		if (!model.getTag().isEmpty())
 		{
 			List<Tag> tags = quizService.findTagByQuiz(model);

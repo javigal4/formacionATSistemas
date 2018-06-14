@@ -51,10 +51,14 @@ public class QuestionMapperImp implements QuestionMapper {
 		
 		log.info("Map Question: DTO to model");
 		
-		Question question = dozer.map(dto, Question.class);
+		Question question = new Question();
+		
+		question.setIdQuestion(dto.getIdQuestion());
+		question.setQuestion(dto.getQuestion());
 		
 		Optional<Tag> tag = tagService.findById(dto.getTagId());
-		question.setTag(tag.get());
+		if (tag.isPresent())
+			question.setTag(tag.get());
 		
 		//List<Answer> answers = dto.getAnswers().stream().map(a -> answerMapper.dtoToModel(a))
 		//		.collect(Collectors.toList());
@@ -66,9 +70,10 @@ public class QuestionMapperImp implements QuestionMapper {
 	@Override
 	public Question dtoToModel(QuestionPostDTO dto) {
 		
-		log.info("Map Question: DTO to model");
+		log.info("Map Question: DTO de post to model");
 		
-		Question question = dozer.map(dto, Question.class);
+		Question question = new Question();
+		question.setQuestion(dto.getQuestion());
 		
 		Optional<Tag> tag = tagService.findById(dto.getTagId());
 		question.setTag(tag.get());
@@ -82,11 +87,17 @@ public class QuestionMapperImp implements QuestionMapper {
 		
 		log.info("Map Question: model to DTO");
 		
-		QuestionDTO questionDTO = dozer.map(model, QuestionDTO.class);
-		//El post falla cuando llama a model.getAnswer()
+		QuestionDTO questionDTO = new QuestionDTO();
+		
+		questionDTO.setIdQuestion(model.getIdQuestion());
+		questionDTO.setQuestion(model.getQuestion());
+		
+		//El model del post no puede consultar los getAnswer ni getTag, por lo que genera error
+		
 		if (!model.getAnswer().isEmpty())
 		{
 			List<AnswerGetDTO> answersGetDTO = answerMapper.modelToDto1(model.getAnswer());
+			//Desordenar las respuestas
 			Collections.shuffle(answersGetDTO);
 			questionDTO.setAnswers(answersGetDTO);
 		}
